@@ -1,2 +1,0 @@
-# zumaltugadu
-# zumaltugadu
