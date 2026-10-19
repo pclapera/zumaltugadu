@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>L'Espigoule - Gîte à Aiguèze</title>
-  <meta name="description" content="Gîte de caractère L'Espigoule à Aiguèze, l'un des Plus Beaux Villages de France. Séjour au coeur des Gorges de l'Ardèche, Gard, Occitanie.">
+  <title>Zumaltugadu - Studio à Bettmeralp</title>
+  <meta name="description" content="Studio de charme dans la maison Zumaltugadu à Bettmeralp (Valais), village sans voiture au pied du glacier d'Aletsch. Ski, randonnée et panorama alpin.">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap">
 
-  <!-- Chargement du fichier de contenu -->
+  <!-- Chargement du contenu : config.js (images, langues) puis un fichier par langue -->
   <script src="config.js"></script>
+  <script src="config.de.js"></script>
+  <script src="config.fr.js"></script>
+  <script src="config.en.js"></script>
 
   <style>
-    /* === Design tokens - Provence sauvage : ocre, pierre, garrigue === */
+    /* === Design tokens - Alpes valaisannes : neige, bleu glacier, bois === */
     :root {
-      --bg:         #faf7f2;
-      --bg-alt:     #f0ebe0;
-      --fg:         #2c2416;
-      --fg-light:   #6b5c3e;
-      --accent:     #8b5e2f;
-      --accent-2:   #c09a5a;
-      --stone:      #d4c9b0;
+      --bg:         #f7f9fb;
+      --bg-alt:     #e8eef3;
+      --fg:         #1b2733;
+      --fg-light:   #51606f;
+      --accent:     #2f5d86;
+      --accent-2:   #6fa3c8;
+      --stone:      #cbd5df;
       --white:      #ffffff;
-      --hero-over:  rgba(30, 20, 8, 0.45);
+      --hero-over:  rgba(10, 20, 32, 0.40);
 
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body:    'Source Sans 3', system-ui, sans-serif;
@@ -29,27 +32,27 @@
 
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --bg:        #1c1710;
-        --bg-alt:    #251f14;
-        --fg:        #e8dcc8;
-        --fg-light:  #b09a72;
-        --accent:    #c09a5a;
-        --accent-2:  #8b5e2f;
-        --stone:     #3d3320;
-        --white:     #1c1710;
+        --bg:        #111a23;
+        --bg-alt:    #18232f;
+        --fg:        #e3ecf3;
+        --fg-light:  #93a8ba;
+        --accent:    #6fa3c8;
+        --accent-2:  #2f5d86;
+        --stone:     #2a3a49;
+        --white:     #111a23;
         color-scheme: dark;
       }
     }
 
     :root[data-theme="dark"] {
-      --bg:        #1c1710;
-      --bg-alt:    #251f14;
-      --fg:        #e8dcc8;
-      --fg-light:  #b09a72;
-      --accent:    #c09a5a;
-      --accent-2:  #8b5e2f;
-      --stone:     #3d3320;
-      --white:     #1c1710;
+      --bg:        #111a23;
+      --bg-alt:    #18232f;
+      --fg:        #e3ecf3;
+      --fg-light:  #93a8ba;
+      --accent:    #6fa3c8;
+      --accent-2:  #2f5d86;
+      --stone:     #2a3a49;
+      --white:     #111a23;
       color-scheme: dark;
     }
 
@@ -77,11 +80,11 @@
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2.5rem;
-      background: rgba(28, 23, 16, 0.0);
+      background: rgba(17, 26, 35, 0.0);
       transition: background 0.4s, padding 0.3s;
     }
     nav.scrolled {
-      background: rgba(28, 23, 16, 0.92);
+      background: rgba(17, 26, 35, 0.92);
       padding: 0.65rem 2.5rem;
       backdrop-filter: blur(6px);
     }
@@ -132,6 +135,21 @@
       transition: 0.3s;
     }
 
+    /* Sélecteur de langue */
+    .lang-switch, .nav-toggle { position: relative; z-index: 1; }
+    .lang-switch select {
+      width: auto;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.35);
+      cursor: pointer;
+    }
+    .lang-switch select:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+
     /* HERO */
     #hero {
       position: relative;
@@ -147,7 +165,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: #2a3d28;
+      background: #1b2a3a;
     }
     .hero-bg img {
       width: 100%;
@@ -161,9 +179,9 @@
       inset: 0;
       opacity: 0.18;
       background-image:
-        radial-gradient(circle at 20% 30%, #c09a5a 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, #8b5e2f 0%, transparent 45%),
-        radial-gradient(circle at 55% 20%, #4a6340 0%, transparent 35%);
+        radial-gradient(circle at 20% 30%, #6fa3c8 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, #2f5d86 0%, transparent 45%),
+        radial-gradient(circle at 55% 20%, #9bb8cf 0%, transparent 35%);
     }
     .hero-overlay {
       position: absolute;
@@ -218,7 +236,7 @@
       background: var(--accent);
       color: #fff;
     }
-    .btn-primary:hover { background: #a8722f; }
+    .btn-primary:hover { background: #244b6e; }
     .btn-outline {
       border: 1px solid rgba(255,255,255,0.6);
       color: #fff;
@@ -730,7 +748,7 @@
     /* FORM SUCCESS */
     .form-success {
       display: none;
-      background: rgba(139, 94, 47, 0.2);
+      background: rgba(47, 93, 134, 0.2);
       border: 1px solid var(--accent-2);
       color: var(--accent-2);
       padding: 1rem 1.5rem;
@@ -801,6 +819,7 @@
       }
       .nav-links.open a { font-size: 1.1rem; }
       .nav-toggle { display: flex; }
+      .lang-switch { margin-left: auto; margin-right: 1rem; }
       .nav-book { display: none; }
 
       .presentation-grid,
@@ -828,23 +847,26 @@
 <body>
 
 <!-- NAV -->
-<nav id="nav" role="navigation" aria-label="Navigation principale">
-  <a href="#" class="nav-logo">L'Espigoule</a>
+<nav id="nav" role="navigation" data-i18n-aria="navAria">
+  <a href="#" class="nav-logo">Zumaltugadu</a>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#presentation">Le Gîte</a></li>
-    <li><a href="#equipements">Équipements</a></li>
-    <li><a href="#galerie">Galerie</a></li>
-    <li><a href="#territoire">Territoire</a></li>
-    <li><a href="#activites">Activités</a></li>
-    <li><a href="#contact" class="nav-book">Demande de réservation</a></li>
+    <li><a href="#presentation" data-i18n="navStudio"></a></li>
+    <li><a href="#equipements" data-i18n="navEquipements"></a></li>
+    <li><a href="#galerie" data-i18n="navGalerie"></a></li>
+    <li><a href="#territoire" data-i18n="navTerritoire"></a></li>
+    <li><a href="#activites" data-i18n="navActivites"></a></li>
+    <li><a href="#contact" class="nav-book" data-i18n="navReserver"></a></li>
   </ul>
-  <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+  <div class="lang-switch">
+    <select id="lang-select" data-i18n-aria="langueLabel"></select>
+  </div>
+  <button class="nav-toggle" id="nav-toggle" data-i18n-aria="menuAria" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- HERO -->
-<section id="hero" aria-label="Bienvenue à L'Espigoule">
+<section id="hero" data-i18n-aria="heroAria">
   <div class="hero-bg" aria-hidden="true">
     <img id="hero-img" src="" alt="">
   </div>
@@ -855,11 +877,11 @@
     <h1 class="hero-title"><em id="hero-titre"></em></h1>
     <p class="hero-subtitle" id="hero-soustitre"></p>
     <div>
-      <a href="#contact" class="btn btn-primary">Réserver</a>
-      <a href="#presentation" class="btn btn-outline">Découvrir</a>
+      <a href="#contact" class="btn btn-primary" data-i18n="heroReserver"></a>
+      <a href="#presentation" class="btn btn-outline" data-i18n="heroDecouvrir"></a>
     </div>
   </div>
-  <div class="hero-scroll" aria-hidden="true">Défiler</div>
+  <div class="hero-scroll" aria-hidden="true" data-i18n="heroDefiler"></div>
 </section>
 
 <!-- PRÉSENTATION -->
@@ -875,17 +897,17 @@
 <!-- GALERIE -->
 <section id="galerie" aria-labelledby="galerie-title">
   <div class="container">
-    <p class="section-label">Photos</p>
-    <h2 class="section-title" id="galerie-title">Le gîte en <em>images</em></h2>
+    <p class="section-label" data-i18n="galerieLabel"></p>
+    <h2 class="section-title" id="galerie-title" data-i18n="galerieTitre"></h2>
   </div>
   <div class="galerie-grid" id="galerie-grid"></div>
 </section>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse de photos" hidden>
-  <button class="lb-close" id="lb-close" aria-label="Fermer">&times;</button>
-  <button class="lb-prev" id="lb-prev" aria-label="Photo précédente">&#8249;</button>
-  <button class="lb-next" id="lb-next" aria-label="Photo suivante">&#8250;</button>
+<div id="lightbox" role="dialog" aria-modal="true" data-i18n-aria="lbAria" hidden>
+  <button class="lb-close" id="lb-close" data-i18n-aria="lbFermer">&times;</button>
+  <button class="lb-prev" id="lb-prev" data-i18n-aria="lbPrecedent">&#8249;</button>
+  <button class="lb-next" id="lb-next" data-i18n-aria="lbSuivant">&#8250;</button>
   <div class="lb-img-wrap">
     <img id="lb-img" src="" alt="">
   </div>
@@ -896,8 +918,8 @@
 <!-- ÉQUIPEMENTS -->
 <section id="equipements" aria-labelledby="equip-title">
   <div class="container">
-    <p class="section-label">Confort &amp; prestations</p>
-    <h2 class="section-title" id="equip-title">Tout pour <em>une escapade parfaite</em></h2>
+    <p class="section-label" data-i18n="equipLabel"></p>
+    <h2 class="section-title" id="equip-title" data-i18n="equipTitre"></h2>
     <div class="equip-grid" id="equip-grid"></div>
   </div>
 </section>
@@ -905,7 +927,7 @@
 <!-- TERRITOIRE -->
 <section id="territoire" aria-labelledby="terr-title">
   <div class="container">
-    <p class="section-label">Situation &amp; découvertes</p>
+    <p class="section-label" data-i18n="terrLabel"></p>
     <h2 class="section-title" id="terr-title"></h2>
     <p class="text-lead" id="terr-texte"></p>
     <div class="village-highlights" id="terr-chiffres"></div>
@@ -919,9 +941,9 @@
 <!-- ACTIVITÉS -->
 <section id="activites" aria-labelledby="activites-title">
   <div class="container">
-    <p class="section-label">Dans la région</p>
-    <h2 class="section-title" id="activites-title">Des activités pour <em>tous les goûts</em></h2>
-    <p class="text-lead">Les Gorges de l'Ardèche, réserve naturelle classée, offrent un terrain de jeu exceptionnel à deux pas du gîte - eau, nature et patrimoine réunis.</p>
+    <p class="section-label" data-i18n="activitesLabel"></p>
+    <h2 class="section-title" id="activites-title" data-i18n="activitesTitre"></h2>
+    <p class="text-lead" id="activites-lead"></p>
     <div class="activites-grid" id="activites-grid"></div>
   </div>
 </section>
@@ -929,56 +951,54 @@
 <!-- CONTACT -->
 <section id="contact" aria-labelledby="contact-title">
   <div class="container">
-    <p class="section-label">Prendre contact</p>
-    <h2 class="section-title" id="contact-title">Faire une <em>demande de séjour</em></h2>
-    <p class="text-lead">Indiquez vos dates et le nombre de personnes. Nous vous répondrons sous 24 heures avec les disponibilités et toutes les informations pour votre séjour.</p>
+    <p class="section-label" data-i18n="contactLabel"></p>
+    <h2 class="section-title" id="contact-title" data-i18n="contactTitre"></h2>
+    <p class="text-lead" data-i18n="contactLead"></p>
     <div class="contact-grid">
       <form class="contact-form" id="contact-form" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label for="prenom">Prénom</label>
+            <label for="prenom" data-i18n="formPrenom"></label>
             <input type="text" id="prenom" name="prenom" placeholder="Marie" required>
           </div>
           <div class="form-group">
-            <label for="nom">Nom</label>
+            <label for="nom" data-i18n="formNom"></label>
             <input type="text" id="nom" name="nom" placeholder="Dupont" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="email">Adresse email</label>
+          <label for="email" data-i18n="formEmail"></label>
           <input type="email" id="email" name="email" placeholder="marie.dupont@email.fr" required>
         </div>
         <div class="form-group">
-          <label for="telephone">Téléphone</label>
-          <input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00">
+          <label for="telephone" data-i18n="formTelephone"></label>
+          <input type="tel" id="telephone" name="telephone" placeholder="+41 79 000 00 00">
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="arrivee">Arrivée</label>
+            <label for="arrivee" data-i18n="formArrivee"></label>
             <input type="date" id="arrivee" name="arrivee" required>
           </div>
           <div class="form-group">
-            <label for="depart">Départ</label>
+            <label for="depart" data-i18n="formDepart"></label>
             <input type="date" id="depart" name="depart" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="personnes">Nombre de personnes</label>
+          <label for="personnes" data-i18n="formPersonnes"></label>
           <select id="personnes" name="personnes">
-            <option value="">Sélectionner</option>
-            <option>1 - 2 personnes</option>
-            <option>3 - 4 personnes</option>
-            <option>5 - 6 personnes</option>
+            <option value="" data-i18n="formSelectionner"></option>
+            <option value="1" data-i18n="formPers1"></option>
+            <option value="2" data-i18n="formPers2"></option>
+            <option value="2+" data-i18n="formPersPlus"></option>
           </select>
         </div>
         <div class="form-group">
-          <label for="message">Message (optionnel)</label>
-          <textarea id="message" name="message" placeholder="Questions, besoins particuliers, animaux..."></textarea>
+          <label for="message" data-i18n="formMessage"></label>
+          <textarea id="message" name="message" data-i18n-ph="formMessagePh"></textarea>
         </div>
-        <div class="form-success" id="form-success" role="status">
-          Votre demande a bien été envoyée. Nous vous répondrons sous 24 h.
-        </div>
-        <button type="submit" class="btn btn-primary btn-send">Envoyer ma demande</button>
+        <div class="form-success" id="form-success" role="status" data-i18n="formSucces"></div>
+        <button type="submit" class="btn btn-primary btn-send" data-i18n="formEnvoyer"></button>
       </form>
       <div class="contact-info" id="contact-info"></div>
     </div>
@@ -987,16 +1007,27 @@
 
 <!-- FOOTER -->
 <footer id="footer">
-  <div class="footer-main">
-    <strong>L'Espigoule</strong> &mdash; Gîte de caractère à Aiguèze (30760) &mdash; Gard, Occitanie
-  </div>
+  <div class="footer-main" id="footer-main"></div>
   <div class="footer-legal" id="footer-legal"></div>
 </footer>
 
 <script>
   // ─── Rendu depuis config.js ────────────────────────────────
-  function renderFromConfig() {
-    const C = CONFIG;
+  function renderFromConfig(langue) {
+    const C = CONFIGS[langue];
+    const U = C.ui;
+
+    // Textes statiques de l'interface (data-i18n, data-i18n-ph, data-i18n-aria)
+    document.documentElement.lang = U.htmlLang;
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = U[el.dataset.i18n]; });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = U[el.dataset.i18nPh]; });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', U[el.dataset.i18nAria]); });
+
+    // Titre, meta et footer
+    document.title = C.meta.titre;
+    document.querySelector('meta[name="description"]').content = C.meta.description;
+    document.getElementById('footer-main').innerHTML = `<strong>${C.nom}</strong> - ${C.footer}`;
+    document.getElementById('activites-lead').textContent = C.activitesLead;
 
     // Héro
     document.getElementById('hero-img').src           = C.hero.image;
@@ -1006,7 +1037,7 @@
 
     // Présentation
     document.getElementById('pres-texte').innerHTML = `
-      <p class="section-label">Le gîte</p>
+      <p class="section-label">${U.presLabel}</p>
       <h2 class="section-title" id="pres-title">${C.presentation.titre} <em>${C.presentation.titreEm}</em></h2>
       <p class="text-lead">${C.presentation.texte}</p>
       <div class="highlights" style="margin-top:2rem;">
@@ -1025,12 +1056,12 @@
     document.getElementById('pres-visual').innerHTML = `
       <div class="visual-main">
         <img src="${C.presentation.imageMain.src}" alt="${C.presentation.imageMain.alt}">
-        <div class="visual-main-caption">L'Espigoule · Aiguèze</div>
+        <div class="visual-main-caption">${C.presentation.legendePhoto}</div>
       </div>
       <div class="visual-accent">
         <img src="${C.presentation.imageAccent.src}" alt="${C.presentation.imageAccent.alt}">
       </div>
-      <div class="visual-badge" aria-hidden="true">Plus Beau Village</div>
+      <div class="visual-badge" aria-hidden="true">${C.presentation.badge}</div>
     `;
 
     // Galerie + lightbox (tableau partagé)
@@ -1038,7 +1069,7 @@
     document.getElementById('galerie-grid').innerHTML = C.galerie.map((p, i) => `
       <button class="galerie-item${i === 0 ? ' galerie-large' : ''}"
               onclick="openLightbox(${i})"
-              aria-label="Voir ${p.legende.toLowerCase()} en grand">
+              aria-label="${U.voirEnGrand.replace('{x}', p.legende)}">
         <img src="${p.src}" alt="${p.legende}">
         <div class="galerie-caption">${p.legende}</div>
       </button>
@@ -1108,42 +1139,42 @@
       <div class="info-item">
         <div class="info-icon" aria-hidden="true">📍</div>
         <div>
-          <div class="info-label">Adresse</div>
+          <div class="info-label">${U.infoAdresse}</div>
           <div class="info-value">${C.contact.adresse.replace('\n', '<br>')}</div>
         </div>
       </div>
       <div class="info-item">
         <div class="info-icon" aria-hidden="true">📞</div>
         <div>
-          <div class="info-label">Téléphone</div>
+          <div class="info-label">${U.infoTelephone}</div>
           <div class="info-value">${C.contact.telephone}</div>
         </div>
       </div>
       <div class="info-item">
         <div class="info-icon" aria-hidden="true">✉</div>
         <div>
-          <div class="info-label">Email</div>
+          <div class="info-label">${U.infoEmail}</div>
           <div class="info-value">${C.contact.email}</div>
         </div>
       </div>
       <div class="info-item">
         <div class="info-icon" aria-hidden="true">🗓</div>
         <div>
-          <div class="info-label">Séjour minimum</div>
+          <div class="info-label">${U.infoSejourMin}</div>
           <div class="info-value">${C.contact.sejourMinimum.replace(/\n/g, '<br>')}</div>
         </div>
       </div>
       <div class="info-item">
         <div class="info-icon" aria-hidden="true">🚗</div>
         <div>
-          <div class="info-label">Accès</div>
+          <div class="info-label">${U.infoAcces}</div>
           <div class="info-value">${C.contact.acces.replace(/\n/g, '<br>')}</div>
         </div>
       </div>
       <div class="info-item">
         <div class="info-icon" aria-hidden="true">🐾</div>
         <div>
-          <div class="info-label">Animaux</div>
+          <div class="info-label">${U.infoAnimaux}</div>
           <div class="info-value">${C.contact.animaux}</div>
         </div>
       </div>
@@ -1155,33 +1186,28 @@
     const copyright = annee > L.anneeCreation
       ? `${L.anneeCreation}-${annee}`
       : `${L.anneeCreation}`;
+    const emailLink = `<a href="mailto:${L.emailRgpd}" style="color:inherit">${L.emailRgpd}</a>`;
     document.getElementById('footer-legal').innerHTML = `
       <div>
-        <div class="footer-legal-title">Mentions légales</div>
-        Responsable de publication : ${L.proprietaire}<br>
+        <div class="footer-legal-title">${U.legalMentions}</div>
+        ${U.legalResponsable} : ${L.proprietaire}<br>
         ${L.adresse}<br>
-        Contact : <a href="mailto:${L.emailRgpd}" style="color:inherit">${L.emailRgpd}</a>
+        ${U.legalContact} : ${emailLink}
       </div>
       <div>
-        <div class="footer-legal-title">Hébergement</div>
+        <div class="footer-legal-title">${U.legalHebergement}</div>
         ${L.hebergeur}
       </div>
       <div>
-        <div class="footer-legal-title">Données personnelles (RGPD)</div>
-        Les informations saisies dans le formulaire de contact (nom, email, téléphone, dates)
-        sont utilisées uniquement pour répondre à votre demande de séjour.
-        Elles ne sont ni vendues ni transmises à des tiers.
-        Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression
-        en écrivant à <a href="mailto:${L.emailRgpd}" style="color:inherit">${L.emailRgpd}</a>.
+        <div class="footer-legal-title">${U.legalDonneesTitre}</div>
+        ${U.legalDonneesTexte.replace('{email}', emailLink)}
       </div>
       <div>
-        <div class="footer-legal-title">Propriété intellectuelle</div>
-        Les textes, photographies et éléments graphiques de ce site sont la propriété exclusive
-        de ${L.proprietaire} et sont protégés par le droit d'auteur.
-        Toute reproduction sans autorisation est interdite.
+        <div class="footer-legal-title">${U.legalPropTitre}</div>
+        ${U.legalPropTexte.replace('{owner}', L.proprietaire)}
       </div>
       <div class="footer-copy">
-        Copyright &copy; ${copyright} ${L.proprietaire} &mdash; All Rights Reserved
+        Copyright &copy; ${copyright} ${L.proprietaire} - ${U.legalCopyright}
       </div>
     `;
   }
@@ -1267,7 +1293,31 @@
   });
 
   // ─── Lancement ────────────────────────────────────────────
-  renderFromConfig();
+  // ─── Langue ───────────────────────────────────────────────
+  const langSelect = document.getElementById('lang-select');
+  langSelect.innerHTML = LANGUES
+    .filter(l => CONFIGS[l.code])
+    .map(l => `<option value="${l.code}">${l.label}</option>`).join('');
+
+  function detectLangue() {
+    try {
+      const saved = localStorage.getItem('langue');
+      if (saved && CONFIGS[saved]) return saved;
+    } catch (e) { /* stockage indisponible */ }
+    const navLang = (navigator.language || '').slice(0, 2).toLowerCase();
+    return CONFIGS[navLang] ? navLang : LANGUE_PAR_DEFAUT;
+  }
+
+  function setLangue(code) {
+    try { localStorage.setItem('langue', code); } catch (e) { /* ignoré */ }
+    langSelect.value = code;
+    renderFromConfig(code);
+  }
+
+  langSelect.addEventListener('change', () => setLangue(langSelect.value));
+
+  // ─── Lancement ────────────────────────────────────────────
+  setLangue(detectLangue());
 </script>
 
 </body>

@@ -1,71 +1,105 @@
-========================================
-L'ESPIGOULE - TO DO LISTE SITE INTERNET
-========================================
+=================================================
+ZUMALTUGADU - TO DO LISTE SITE INTERNET
+Studio à Bettmeralp (Valais)
+=================================================
 
 PRIORITÉ HAUTE
 --------------
+[ ] Compléter les infos du studio dans config.js (marquées "À CONFIRMER")
+    - Surface, capacité, couchages (lit escamotable : 1 ou 2 personnes ?)
+    - Liste d'équipements réels : Wi-Fi, linge de lit, serviettes, local à skis,
+      lave-vaisselle, salle de bain, balcon ou terrasse
+    - Animaux acceptés ou non
+    - Séjour minimum selon la saison
+    - Coordonnées : téléphone, email, adresse exacte
+
+[ ] Alléger les photos (indispensable avant la mise en ligne)
+    - Les photos actuelles pèsent 4 à 6 Mo chacune (3000 à 5700 px de large)
+    - Cible : 1920 px de large max, format .webp ou .jpg, moins de 500 Ko
+    - Outils : squoosh.app, ou ImageMagick (magick mogrify -resize 1920x -quality 80)
+    - Garder les originaux dans photos_originales/ (déjà ignoré par git)
+
 [ ] Connecter le formulaire de contact
     - Créer un compte sur formspree.io (gratuit jusqu'à 50 demandes/mois)
     - Récupérer l'identifiant du formulaire
-    - Remplacer l'action du formulaire dans index.html
+    - Remplacer l'action du formulaire dans zumaltugadu.html
+      (pour l'instant le formulaire ne fait que s'afficher)
 
-[ ] Ajouter des photos réelles
-    - Photo en hero : extérieur avec village ou nature en arrière-plan,
-      lumière dorée (matin ou soir) de préférence
-    - Section présentation (grand cadre) : façade du gîte ou vue extérieure
-    - Section présentation (vignette) : terrasse, jardin ou piscine
-    - Galerie : toutes les pièces (salon, cuisine, chambres, salle de bain,
-      terrasse, piscine, jardin, terrain de pétanque)
-    -> Mettre les photos dans le dossier images/ et donner les noms de fichiers
+[ ] Compléter les photos manquantes
+    - Chambre / coin nuit lit déplié, salle de bain, WC
+    - Vue depuis les fenêtres ou le balcon (jour)
+    - Photos d'été (randonnée, lacs, glacier) pour la carte "Randonnée d'été"
+    - Vérifier le droit à l'image des personnes visibles sur depart_ski.jpg
+      et terrasse.jpg (ou recadrer / remplacer)
 
-[ ] Ajouter des avis clients / témoignages
-    - Créer une section "Ils ont séjourné à L'Espigoule"
-    - Idéalement 3-4 avis courts avec prénom, ville et mois/année
-    - Peuvent venir de Airbnb, Gîtes de France, Booking ou directement
-
+[ ] Vérifier les infos du territoire dans config.js
+    - Altitude du village, temps de trajet à pied vers les pistes
+    - Horaires et accès de la télécabine (Betten - Bettmeralp)
+    - Noms des remontées et du domaine (Aletsch Arena)
 
 PRIORITÉ MOYENNE
 ----------------
-[ ] Calendrier des disponibilités
-    - Option simple : afficher visuellement les mois déjà réservés
-    - Option avancée : intégrer un vrai calendrier de réservation (Lodgify,
-      Smoobu, etc.)
+[ ] Avis clients / témoignages
+    - Créer une section "Ils ont séjourné à Zumaltugadu"
+    - 3 à 4 avis courts avec prénom, ville et mois/année
 
-[ ] Réseaux sociaux
-    - Si vous avez un compte Instagram ou Facebook, ajouter les liens
-      dans le footer
+[ ] Calendrier des disponibilités
+    - Option simple : afficher visuellement les périodes déjà réservées
+    - Option avancée : intégrer un vrai calendrier de réservation
+      (Lodgify, Smoobu, etc.)
+
+[ ] Faire relire les traductions
+    - Le site existe en DE (langue principale), FR et EN
+    - Textes dans config.de.js, config.fr.js, config.en.js (même schéma)
+    - Faire relire l'allemand et l'anglais par un natif, surtout le texte
+      de protection des données (DSG / FADP)
+    - Quand un texte change, le modifier dans les trois fichiers
 
 [ ] Référencement Google (SEO)
     - Enrichir les balises meta (description, mots-clés)
-    - Mots-clés cibles : "gîte Aiguèze", "location Gorges Ardèche",
-      "gîte Plus Beau Village Gard", "location vacances Aiguèze"
+    - Mots-clés cibles : "studio Bettmeralp", "location vacances Bettmeralp",
+      "appartement Aletsch Arena", "logement ski Bettmeralp"
 
+[ ] Réseaux sociaux
+    - Si compte Instagram ou Facebook, ajouter les liens dans le footer
 
 PRIORITÉ BASSE / LONG TERME
 ----------------------------
 [ ] Nom de domaine propre
-    - Recommandation 1 : lespigoule.fr (court, mémorisable, correspond au nom du gîte)
-    - Recommandation 2 : gite-espigoule.fr (si lespigoule.fr est pris)
-    - Recommandation 3 : gite-aigueze.fr (bon pour le SEO local, moins brandé)
-    - Éviter les accents dans le domaine (aigueze et non aiguèze)
-    - Préférer .fr au .com pour une clientèle française
-    - Vérifier la disponibilité sur afnic.fr ou directement chez un registrar
-    - Coût : environ 7-12 EUR/an chez OVH, Infomaniak ou Gandi
+    - Idées : zumaltugadu.ch, studio-bettmeralp.ch
+    - Éviter les accents dans le domaine
+    - Préférer .ch pour une clientèle suisse
+    - Vérifier la disponibilité sur switch.ch ou chez un registrar
+    - Coût : environ 10-20 CHF/an (Infomaniak, Hostpoint, Cyon...)
     - Nécessite un hébergement web pour mettre le site en ligne
 
 [ ] Mettre le site en ligne
-    - Choisir un hébergeur (OVH, Infomaniak, o2switch...)
-    - Transférer le dossier complet (espigoule.html + config.js + images/ + vignettes/)
+    - Choisir un hébergeur (Infomaniak, Hostpoint, Cyon...)
+    - Transférer le dossier complet (zumaltugadu.html + config.js + images/
+      + photos bettmeralp_*.jpg)
+    - Renseigner l'hébergeur dans config.js (legal.hebergeur)
     - Tester toutes les fonctionnalités une fois en ligne
 
-[ ] Google My Business
+[ ] Mentions légales
+    - Remplir legal.proprietaire, legal.adresse, legal.emailRgpd dans config.js
+    - Vérifier le texte de protection des données (LPD) avec la bonne
+      personne responsable
+
+[ ] Google Business Profile
     - Créer une fiche établissement pour apparaître sur Google Maps
     - Ajouter photos, description, lien vers le site
 
 
 NOTES
 -----
-- Les emplacements de photos sont déjà prévus dans le code (placeholders)
-- Le formulaire de contact est fonctionnel visuellement, il faut juste
-  le connecter à un service d'envoi d'email
-- Les tarifs ont été volontairement retirés du site (demande sur devis)
+- Les images et la liste des langues sont dans config.js. Les textes sont
+  dans un fichier par langue (config.de.js, config.fr.js, config.en.js).
+  La page zumaltugadu.html se met à jour automatiquement.
+- Langue par défaut : allemand. Le choix du visiteur est mémorisé dans le
+  navigateur. Ajouter une langue : voir l'en-tête de config.js.
+- Palette du site : bleu glacier / neige / bois (modifiable dans les
+  variables CSS en haut de zumaltugadu.html).
+- Les tarifs ne sont pas affichés (demande sur devis).
+- Les photos actuelles : images/ pour l'intérieur et l'entrée,
+  bettmeralp_*.jpg (dossier principal) pour le village et le héro.
+- Le site s'ouvre en double-cliquant sur zumaltugadu.html.
