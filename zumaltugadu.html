@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>L'Espigoule - Gîte à Aiguèze</title>
+  <meta name="description" content="Gîte de caractère L'Espigoule à Aiguèze, l'un des Plus Beaux Villages de France. Séjour au coeur des Gorges de l'Ardèche, Gard, Occitanie.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap">
+
+  <!-- Chargement du fichier de contenu -->
+  <script src="config.js"></script>
+
+  <style>
+    /* === Design tokens - Provence sauvage : ocre, pierre, garrigue === */
+    :root {
+      --bg:         #faf7f2;
+      --bg-alt:     #f0ebe0;
+      --fg:         #2c2416;
+      --fg-light:   #6b5c3e;
+      --accent:     #8b5e2f;
+      --accent-2:   #c09a5a;
+      --stone:      #d4c9b0;
+      --white:      #ffffff;
+      --hero-over:  rgba(30, 20, 8, 0.45);
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Source Sans 3', system-ui, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:        #1c1710;
+        --bg-alt:    #251f14;
+        --fg:        #e8dcc8;
+        --fg-light:  #b09a72;
+        --accent:    #c09a5a;
+        --accent-2:  #8b5e2f;
+        --stone:     #3d3320;
+        --white:     #1c1710;
+        color-scheme: dark;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg:        #1c1710;
+      --bg-alt:    #251f14;
+      --fg:        #e8dcc8;
+      --fg-light:  #b09a72;
+      --accent:    #c09a5a;
+      --accent-2:  #8b5e2f;
+      --stone:     #3d3320;
+      --white:     #1c1710;
+      color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.7;
+      padding-inline: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: env(safe-area-inset-top, 0px);
+      left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(28, 23, 16, 0.0);
+      transition: background 0.4s, padding 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(28, 23, 16, 0.92);
+      padding: 0.65rem 2.5rem;
+      backdrop-filter: blur(6px);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent-2); }
+    .nav-book {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 2px;
+    }
+    .nav-book:hover { background: var(--accent-2); color: #fff !important; }
+
+    /* Hamburger mobile */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* HERO */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding-inline: 1rem;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: #2a3d28;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.75;
+    }
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      opacity: 0.18;
+      background-image:
+        radial-gradient(circle at 20% 30%, #c09a5a 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, #8b5e2f 0%, transparent 45%),
+        radial-gradient(circle at 55% 20%, #4a6340 0%, transparent 35%);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--hero-over);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: #fff;
+      font-weight: 400;
+      line-height: 1.1;
+      text-wrap: balance;
+      margin-bottom: 1rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent-2);
+    }
+    .hero-subtitle {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.1rem;
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      text-wrap: balance;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.15s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #a8722f; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.6);
+      color: #fff;
+      margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.4);
+      display: block;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* SECTION BASE */
+    section { padding: 5rem 0; }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-inline: 2rem;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      text-wrap: balance;
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--fg-light); }
+    .text-lead {
+      font-size: 1.08rem;
+      color: var(--fg-light);
+      max-width: 620px;
+      line-height: 1.8;
+    }
+
+    /* PRÉSENTATION */
+    #presentation { background: var(--bg); }
+    .presentation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .presentation-visual { position: relative; }
+    .visual-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+    .visual-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .visual-main-caption {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.2rem;
+      background: rgba(28,23,16,0.7);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.7rem;
+      border-radius: 2px;
+    }
+    .visual-accent {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 55%;
+      aspect-ratio: 1;
+      border-radius: 3px;
+      border: 4px solid var(--bg);
+      overflow: hidden;
+    }
+    .visual-accent img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .visual-badge {
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      padding: 0.7rem 1rem;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: var(--bg-alt);
+      border-radius: 3px;
+      border-left: 3px solid var(--accent-2);
+    }
+    .hi-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; margin-top: 0.1rem; }
+    .hi-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+    .hi-value { font-size: 0.95rem; font-weight: 600; color: var(--fg); }
+
+    /* GALERIE */
+    #galerie { background: var(--bg-alt); padding-bottom: 0; }
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 4px;
+      margin-top: 2rem;
+    }
+    .galerie-large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .galerie-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      background: none;
+      display: block;
+    }
+    .galerie-large { aspect-ratio: unset; }
+    .galerie-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .galerie-item:hover img { transform: scale(1.05); }
+    .galerie-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(28,23,16,0.75));
+      color: #fff;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 1.5rem 1rem 0.75rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .galerie-item:hover .galerie-caption,
+    .galerie-item:focus .galerie-caption { opacity: 1; }
+    .galerie-item:focus { outline: 3px solid var(--accent-2); outline-offset: -3px; }
+
+    /* LIGHTBOX */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,8,5,0.95);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #lightbox[hidden] { display: none; }
+    .lb-img-wrap {
+      max-width: 90vw;
+      max-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #lb-img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+    .lb-caption {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+    }
+    .lb-counter {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.78rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .lb-close {
+      position: fixed;
+      top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lb-close:hover { color: #fff; }
+    .lb-prev, .lb-next {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 2rem;
+      width: 3rem; height: 3rem;
+      cursor: pointer;
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.2); }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+    @media (max-width: 768px) {
+      .galerie-grid { grid-template-columns: 1fr 1fr; }
+      .galerie-large { grid-column: span 2; grid-row: span 1; }
+      .galerie-large { aspect-ratio: 4/3; }
+    }
+
+    /* EQUIPEMENTS */
+    #equipements { background: var(--bg-alt); }
+    .equip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .equip-card {
+      background: var(--bg);
+      padding: 2rem 1.5rem;
+      border-radius: 3px;
+      border-top: 3px solid var(--accent);
+    }
+    .equip-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+    .equip-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    .equip-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .equip-list li {
+      font-size: 0.9rem;
+      color: var(--fg-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .equip-list li::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--accent-2);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* TERRITOIRE */
+    #territoire { background: var(--bg); }
+    .village-highlights {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0 0;
+      flex-wrap: wrap;
+    }
+    .vhl-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 1.25rem 1.75rem;
+      background: var(--bg-alt);
+      border-radius: 3px;
+      border-bottom: 3px solid var(--accent);
+    }
+    .vhl-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .vhl-num sup { font-size: 1rem; }
+    .vhl-label {
+      font-size: 0.78rem;
+      color: var(--fg-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      max-width: 16ch;
+      line-height: 1.4;
+    }
+    .territoire-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .map-placeholder {
+      aspect-ratio: 4/3;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .map-caption {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(28,23,16,0.72);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
+    }
+    .pois { display: flex; flex-direction: column; gap: 1.2rem; }
+    .poi {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--stone);
+    }
+    .poi:last-child { border-bottom: none; padding-bottom: 0; }
+    .poi-distance {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      min-width: 3.5rem;
+      margin-top: 0.15rem;
+    }
+    .poi-name { font-weight: 600; font-size: 0.95rem; color: var(--fg); margin-bottom: 0.1rem; }
+    .poi-desc { font-size: 0.85rem; color: var(--fg-light); }
+
+    /* ACTIVITÉS */
+    #activites { background: var(--bg-alt); }
+    .activites-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .activite-card {
+      background: var(--bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .activite-header {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .activite-icon { font-size: 2.5rem; }
+    .activite-body { padding: 1.5rem; }
+    .activite-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 0.75rem;
+    }
+    .activite-desc {
+      font-size: 0.88rem;
+      color: var(--fg-light);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .activite-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--bg-alt);
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      border: 1px solid var(--stone);
+    }
+    @media (max-width: 768px) {
+      .activites-grid { grid-template-columns: 1fr; }
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--fg);
+      color: var(--bg);
+      padding: 6rem 0;
+    }
+    #contact .section-label { color: var(--accent-2); }
+    #contact .section-title { color: var(--bg); }
+    #contact .text-lead { color: rgba(250,247,242,0.75); max-width: 480px; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    label {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.6);
+    }
+    input, select, textarea {
+      background: rgba(250,247,242,0.08);
+      border: 1px solid rgba(250,247,242,0.2);
+      color: var(--bg);
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(250,247,242,0.3); }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent-2); }
+    select option { background: var(--fg); color: var(--bg); }
+    textarea { resize: vertical; min-height: 120px; }
+    .btn-send {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      align-self: flex-start;
+    }
+    .btn-send:hover { background: var(--accent-2); }
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; justify-content: center; }
+    .info-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .info-icon { font-size: 1.4rem; width: 2.5rem; flex-shrink: 0; text-align: center; margin-top: 0.1rem; }
+    .info-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-2);
+      margin-bottom: 0.25rem;
+    }
+    .info-value { color: var(--bg); font-size: 1rem; line-height: 1.5; }
+
+    /* FORM SUCCESS */
+    .form-success {
+      display: none;
+      background: rgba(139, 94, 47, 0.2);
+      border: 1px solid var(--accent-2);
+      color: var(--accent-2);
+      padding: 1rem 1.5rem;
+      border-radius: 2px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0f0d09;
+      color: rgba(255,255,255,0.45);
+      padding: 2.5rem 2rem 2rem;
+      font-size: 0.82rem;
+    }
+    .footer-main {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    footer strong { color: rgba(255,255,255,0.7); }
+    .footer-legal {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 3rem;
+      text-align: left;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.6;
+    }
+    .footer-legal-title {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.3rem;
+    }
+    .footer-copy {
+      grid-column: 1 / -1;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.2rem;
+      margin-top: 0.5rem;
+      font-size: 0.74rem;
+      color: rgba(255,255,255,0.25);
+    }
+    @media (max-width: 600px) {
+      .footer-legal { grid-template-columns: 1fr; }
+      .footer-copy { grid-column: 1; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        background: rgba(15,13,9,0.97);
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+      .nav-links.open a { font-size: 1.1rem; }
+      .nav-toggle { display: flex; }
+      .nav-book { display: none; }
+
+      .presentation-grid,
+      .territoire-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .visual-accent { display: none; }
+      .visual-badge { width: 60px; height: 60px; font-size: 0.8rem; }
+      .highlights { grid-template-columns: 1fr; }
+      .equip-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 0; }
+      .container { padding-inline: 1.25rem; }
+      .hero-title { font-size: 2.8rem; }
+      .btn-outline { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Navigation principale">
+  <a href="#" class="nav-logo">L'Espigoule</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#presentation">Le Gîte</a></li>
+    <li><a href="#equipements">Équipements</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#territoire">Territoire</a></li>
+    <li><a href="#activites">Activités</a></li>
+    <li><a href="#contact" class="nav-book">Demande de réservation</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero" aria-label="Bienvenue à L'Espigoule">
+  <div class="hero-bg" aria-hidden="true">
+    <img id="hero-img" src="" alt="">
+  </div>
+  <div class="hero-texture" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" id="hero-eyebrow"></p>
+    <h1 class="hero-title"><em id="hero-titre"></em></h1>
+    <p class="hero-subtitle" id="hero-soustitre"></p>
+    <div>
+      <a href="#contact" class="btn btn-primary">Réserver</a>
+      <a href="#presentation" class="btn btn-outline">Découvrir</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">Défiler</div>
+</section>
+
+<!-- PRÉSENTATION -->
+<section id="presentation" aria-labelledby="pres-title">
+  <div class="container">
+    <div class="presentation-grid">
+      <div id="pres-texte"></div>
+      <div class="presentation-visual" id="pres-visual"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie" aria-labelledby="galerie-title">
+  <div class="container">
+    <p class="section-label">Photos</p>
+    <h2 class="section-title" id="galerie-title">Le gîte en <em>images</em></h2>
+  </div>
+  <div class="galerie-grid" id="galerie-grid"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse de photos" hidden>
+  <button class="lb-close" id="lb-close" aria-label="Fermer">&times;</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Photo précédente">&#8249;</button>
+  <button class="lb-next" id="lb-next" aria-label="Photo suivante">&#8250;</button>
+  <div class="lb-img-wrap">
+    <img id="lb-img" src="" alt="">
+  </div>
+  <div class="lb-caption" id="lb-caption"></div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<!-- ÉQUIPEMENTS -->
+<section id="equipements" aria-labelledby="equip-title">
+  <div class="container">
+    <p class="section-label">Confort &amp; prestations</p>
+    <h2 class="section-title" id="equip-title">Tout pour <em>une escapade parfaite</em></h2>
+    <div class="equip-grid" id="equip-grid"></div>
+  </div>
+</section>
+
+<!-- TERRITOIRE -->
+<section id="territoire" aria-labelledby="terr-title">
+  <div class="container">
+    <p class="section-label">Situation &amp; découvertes</p>
+    <h2 class="section-title" id="terr-title"></h2>
+    <p class="text-lead" id="terr-texte"></p>
+    <div class="village-highlights" id="terr-chiffres"></div>
+    <div class="territoire-grid">
+      <div class="map-placeholder" id="terr-image"></div>
+      <div class="pois" id="terr-pois"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITÉS -->
+<section id="activites" aria-labelledby="activites-title">
+  <div class="container">
+    <p class="section-label">Dans la région</p>
+    <h2 class="section-title" id="activites-title">Des activités pour <em>tous les goûts</em></h2>
+    <p class="text-lead">Les Gorges de l'Ardèche, réserve naturelle classée, offrent un terrain de jeu exceptionnel à deux pas du gîte - eau, nature et patrimoine réunis.</p>
+    <div class="activites-grid" id="activites-grid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <p class="section-label">Prendre contact</p>
+    <h2 class="section-title" id="contact-title">Faire une <em>demande de séjour</em></h2>
+    <p class="text-lead">Indiquez vos dates et le nombre de personnes. Nous vous répondrons sous 24 heures avec les disponibilités et toutes les informations pour votre séjour.</p>
+    <div class="contact-grid">
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Marie" required>
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" name="email" placeholder="marie.dupont@email.fr" required>
+        </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="arrivee">Arrivée</label>
+            <input type="date" id="arrivee" name="arrivee" required>
+          </div>
+          <div class="form-group">
+            <label for="depart">Départ</label>
+            <input type="date" id="depart" name="depart" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="personnes">Nombre de personnes</label>
+          <select id="personnes" name="personnes">
+            <option value="">Sélectionner</option>
+            <option>1 - 2 personnes</option>
+            <option>3 - 4 personnes</option>
+            <option>5 - 6 personnes</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message (optionnel)</label>
+          <textarea id="message" name="message" placeholder="Questions, besoins particuliers, animaux..."></textarea>
+        </div>
+        <div class="form-success" id="form-success" role="status">
+          Votre demande a bien été envoyée. Nous vous répondrons sous 24 h.
+        </div>
+        <button type="submit" class="btn btn-primary btn-send">Envoyer ma demande</button>
+      </form>
+      <div class="contact-info" id="contact-info"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-main">
+    <strong>L'Espigoule</strong> &mdash; Gîte de caractère à Aiguèze (30760) &mdash; Gard, Occitanie
+  </div>
+  <div class="footer-legal" id="footer-legal"></div>
+</footer>
+
+<script>
+  // ─── Rendu depuis config.js ────────────────────────────────
+  function renderFromConfig() {
+    const C = CONFIG;
+
+    // Héro
+    document.getElementById('hero-img').src           = C.hero.image;
+    document.getElementById('hero-eyebrow').textContent = C.hero.accroche;
+    document.getElementById('hero-titre').textContent  = C.hero.titre;
+    document.getElementById('hero-soustitre').textContent = C.hero.sousTitre;
+
+    // Présentation
+    document.getElementById('pres-texte').innerHTML = `
+      <p class="section-label">Le gîte</p>
+      <h2 class="section-title" id="pres-title">${C.presentation.titre} <em>${C.presentation.titreEm}</em></h2>
+      <p class="text-lead">${C.presentation.texte}</p>
+      <div class="highlights" style="margin-top:2rem;">
+        ${C.presentation.infos.map(h => `
+          <div class="highlight-item">
+            <span class="hi-icon" aria-hidden="true">${h.icone}</span>
+            <div>
+              <span class="hi-label">${h.label}</span>
+              <span class="hi-value">${h.valeur}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    document.getElementById('pres-visual').innerHTML = `
+      <div class="visual-main">
+        <img src="${C.presentation.imageMain.src}" alt="${C.presentation.imageMain.alt}">
+        <div class="visual-main-caption">L'Espigoule · Aiguèze</div>
+      </div>
+      <div class="visual-accent">
+        <img src="${C.presentation.imageAccent.src}" alt="${C.presentation.imageAccent.alt}">
+      </div>
+      <div class="visual-badge" aria-hidden="true">Plus Beau Village</div>
+    `;
+
+    // Galerie + lightbox (tableau partagé)
+    photos = C.galerie.map(p => ({ src: p.src, alt: p.legende }));
+    document.getElementById('galerie-grid').innerHTML = C.galerie.map((p, i) => `
+      <button class="galerie-item${i === 0 ? ' galerie-large' : ''}"
+              onclick="openLightbox(${i})"
+              aria-label="Voir ${p.legende.toLowerCase()} en grand">
+        <img src="${p.src}" alt="${p.legende}">
+        <div class="galerie-caption">${p.legende}</div>
+      </button>
+    `).join('');
+
+    // Équipements
+    document.getElementById('equip-grid').innerHTML = C.equipements.map(e => `
+      <div class="equip-card">
+        <span class="equip-icon" aria-hidden="true">${e.icone}</span>
+        <h3 class="equip-title">${e.titre}</h3>
+        <ul class="equip-list">
+          ${e.liste.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+
+    // Territoire
+    document.getElementById('terr-title').innerHTML =
+      `${C.territoire.titre} <em>${C.territoire.titreEm}</em>`;
+    document.getElementById('terr-texte').innerHTML = C.territoire.texte;
+    document.getElementById('terr-chiffres').innerHTML = C.territoire.chiffres.map(c => `
+      <div class="vhl-item">
+        <span class="vhl-num">${c.valeur}</span>
+        <span class="vhl-label">${c.label}</span>
+      </div>
+    `).join('');
+    document.getElementById('terr-image').innerHTML = `
+      <img src="${C.territoire.image.src}" alt="${C.territoire.image.alt}">
+      <div class="map-caption">${C.territoire.image.legende}</div>
+    `;
+    document.getElementById('terr-pois').innerHTML = C.territoire.pointsInteret.map(p => `
+      <div class="poi">
+        <span class="poi-distance">${p.distance}</span>
+        <div>
+          <div class="poi-name">${p.nom}</div>
+          <div class="poi-desc">${p.desc}</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Activités
+    document.getElementById('activites-grid').innerHTML = C.activites.map(a => {
+      const headerStyle = a.image
+        ? `background-image: url('${a.image}'); background-size: cover; background-position: center;`
+        : `background: ${a.couleur};`;
+      const overlayStyle = a.image
+        ? `position:absolute;inset:0;background:${a.couleur};opacity:0.55;`
+        : `display:none;`;
+      return `
+      <div class="activite-card">
+        <div class="activite-header" style="${headerStyle} position:relative;">
+          <div style="${overlayStyle}"></div>
+          <span class="activite-icon" style="position:relative;z-index:1;" aria-hidden="true">${a.icone}</span>
+        </div>
+        <div class="activite-body">
+          <h3 class="activite-title">${a.titre}</h3>
+          <p class="activite-desc">${a.desc}</p>
+          <div class="activite-tags">
+            ${a.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Contact
+    document.getElementById('contact-info').innerHTML = `
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">📍</div>
+        <div>
+          <div class="info-label">Adresse</div>
+          <div class="info-value">${C.contact.adresse.replace('\n', '<br>')}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">📞</div>
+        <div>
+          <div class="info-label">Téléphone</div>
+          <div class="info-value">${C.contact.telephone}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">✉</div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value">${C.contact.email}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">🗓</div>
+        <div>
+          <div class="info-label">Séjour minimum</div>
+          <div class="info-value">${C.contact.sejourMinimum.replace(/\n/g, '<br>')}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">🚗</div>
+        <div>
+          <div class="info-label">Accès</div>
+          <div class="info-value">${C.contact.acces.replace(/\n/g, '<br>')}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">🐾</div>
+        <div>
+          <div class="info-label">Animaux</div>
+          <div class="info-value">${C.contact.animaux}</div>
+        </div>
+      </div>
+    `;
+
+    // Footer legal
+    const L = C.legal;
+    const annee = new Date().getFullYear();
+    const copyright = annee > L.anneeCreation
+      ? `${L.anneeCreation}-${annee}`
+      : `${L.anneeCreation}`;
+    document.getElementById('footer-legal').innerHTML = `
+      <div>
+        <div class="footer-legal-title">Mentions légales</div>
+        Responsable de publication : ${L.proprietaire}<br>
+        ${L.adresse}<br>
+        Contact : <a href="mailto:${L.emailRgpd}" style="color:inherit">${L.emailRgpd}</a>
+      </div>
+      <div>
+        <div class="footer-legal-title">Hébergement</div>
+        ${L.hebergeur}
+      </div>
+      <div>
+        <div class="footer-legal-title">Données personnelles (RGPD)</div>
+        Les informations saisies dans le formulaire de contact (nom, email, téléphone, dates)
+        sont utilisées uniquement pour répondre à votre demande de séjour.
+        Elles ne sont ni vendues ni transmises à des tiers.
+        Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression
+        en écrivant à <a href="mailto:${L.emailRgpd}" style="color:inherit">${L.emailRgpd}</a>.
+      </div>
+      <div>
+        <div class="footer-legal-title">Propriété intellectuelle</div>
+        Les textes, photographies et éléments graphiques de ce site sont la propriété exclusive
+        de ${L.proprietaire} et sont protégés par le droit d'auteur.
+        Toute reproduction sans autorisation est interdite.
+      </div>
+      <div class="footer-copy">
+        Copyright &copy; ${copyright} ${L.proprietaire} &mdash; All Rights Reserved
+      </div>
+    `;
+  }
+
+  // ─── Lightbox ─────────────────────────────────────────────
+  let photos = [];
+  let currentIdx = 0;
+  const lightbox  = document.getElementById('lightbox');
+  const lbImg     = document.getElementById('lb-img');
+  const lbCaption = document.getElementById('lb-caption');
+  const lbCounter = document.getElementById('lb-counter');
+
+  function showPhoto(idx) {
+    currentIdx = (idx + photos.length) % photos.length;
+    const p = photos[currentIdx];
+    lbImg.src = p.src;
+    lbImg.alt = p.alt;
+    lbCaption.textContent = p.alt;
+    lbCounter.textContent = (currentIdx + 1) + ' / ' + photos.length;
+  }
+
+  window.openLightbox = function(idx) {
+    showPhoto(idx);
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lb-close').focus();
+  };
+
+  document.getElementById('lb-close').addEventListener('click', () => {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  });
+  document.getElementById('lb-prev').addEventListener('click', () => showPhoto(currentIdx - 1));
+  document.getElementById('lb-next').addEventListener('click', () => showPhoto(currentIdx + 1));
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) { lightbox.hidden = true; document.body.style.overflow = ''; }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape')     { lightbox.hidden = true; document.body.style.overflow = ''; }
+    if (e.key === 'ArrowLeft')  showPhoto(currentIdx - 1);
+    if (e.key === 'ArrowRight') showPhoto(currentIdx + 1);
+  });
+
+  // ─── Navigation scrollée ──────────────────────────────────
+  const nav    = document.getElementById('nav');
+  const toggle = document.getElementById('nav-toggle');
+  const links  = document.getElementById('nav-links');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ─── Formulaire ───────────────────────────────────────────
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'none';
+    }, 6000);
+  });
+
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('arrivee').min = today;
+  document.getElementById('depart').min  = today;
+  document.getElementById('arrivee').addEventListener('change', () => {
+    document.getElementById('depart').min = document.getElementById('arrivee').value;
+  });
+
+  // ─── Lancement ────────────────────────────────────────────
+  renderFromConfig();
+</script>
+
+</body>
+</html>

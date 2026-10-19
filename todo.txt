@@ -1,0 +1,71 @@
+========================================
+L'ESPIGOULE - TO DO LISTE SITE INTERNET
+========================================
+
+PRIORITÉ HAUTE
+--------------
+[ ] Connecter le formulaire de contact
+    - Créer un compte sur formspree.io (gratuit jusqu'à 50 demandes/mois)
+    - Récupérer l'identifiant du formulaire
+    - Remplacer l'action du formulaire dans index.html
+
+[ ] Ajouter des photos réelles
+    - Photo en hero : extérieur avec village ou nature en arrière-plan,
+      lumière dorée (matin ou soir) de préférence
+    - Section présentation (grand cadre) : façade du gîte ou vue extérieure
+    - Section présentation (vignette) : terrasse, jardin ou piscine
+    - Galerie : toutes les pièces (salon, cuisine, chambres, salle de bain,
+      terrasse, piscine, jardin, terrain de pétanque)
+    -> Mettre les photos dans le dossier images/ et donner les noms de fichiers
+
+[ ] Ajouter des avis clients / témoignages
+    - Créer une section "Ils ont séjourné à L'Espigoule"
+    - Idéalement 3-4 avis courts avec prénom, ville et mois/année
+    - Peuvent venir de Airbnb, Gîtes de France, Booking ou directement
+
+
+PRIORITÉ MOYENNE
+----------------
+[ ] Calendrier des disponibilités
+    - Option simple : afficher visuellement les mois déjà réservés
+    - Option avancée : intégrer un vrai calendrier de réservation (Lodgify,
+      Smoobu, etc.)
+
+[ ] Réseaux sociaux
+    - Si vous avez un compte Instagram ou Facebook, ajouter les liens
+      dans le footer
+
+[ ] Référencement Google (SEO)
+    - Enrichir les balises meta (description, mots-clés)
+    - Mots-clés cibles : "gîte Aiguèze", "location Gorges Ardèche",
+      "gîte Plus Beau Village Gard", "location vacances Aiguèze"
+
+
+PRIORITÉ BASSE / LONG TERME
+----------------------------
+[ ] Nom de domaine propre
+    - Recommandation 1 : lespigoule.fr (court, mémorisable, correspond au nom du gîte)
+    - Recommandation 2 : gite-espigoule.fr (si lespigoule.fr est pris)
+    - Recommandation 3 : gite-aigueze.fr (bon pour le SEO local, moins brandé)
+    - Éviter les accents dans le domaine (aigueze et non aiguèze)
+    - Préférer .fr au .com pour une clientèle française
+    - Vérifier la disponibilité sur afnic.fr ou directement chez un registrar
+    - Coût : environ 7-12 EUR/an chez OVH, Infomaniak ou Gandi
+    - Nécessite un hébergement web pour mettre le site en ligne
+
+[ ] Mettre le site en ligne
+    - Choisir un hébergeur (OVH, Infomaniak, o2switch...)
+    - Transférer le dossier complet (espigoule.html + config.js + images/ + vignettes/)
+    - Tester toutes les fonctionnalités une fois en ligne
+
+[ ] Google My Business
+    - Créer une fiche établissement pour apparaître sur Google Maps
+    - Ajouter photos, description, lien vers le site
+
+
+NOTES
+-----
+- Les emplacements de photos sont déjà prévus dans le code (placeholders)
+- Le formulaire de contact est fonctionnel visuellement, il faut juste
+  le connecter à un service d'envoi d'email
+- Les tarifs ont été volontairement retirés du site (demande sur devis)
